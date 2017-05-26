@@ -37,7 +37,7 @@ class BookController extends Controller
     $pdt_images = PdtImages::where('product_id', $product_id)->get();
      
     $count = 0;
-    /*$member = $request->session()->get('member', '');
+    $member = $request->session()->get('member', '');
     if($member != '') {
       $cart_items = CartItem::where('member_id', $member->id)->get();
 
@@ -47,7 +47,7 @@ class BookController extends Controller
           break;
         }
       }
-    } else {*/
+    } else {
       $bk_cart = $request->cookie('bk_cart');
       $bk_cart_arr = ($bk_cart!=null ? explode(',', $bk_cart) : array());
 
@@ -58,8 +58,7 @@ class BookController extends Controller
           break;
         }
       }
-   /* }
-*/
+    }
     return view('pdt_content')->with('product', $product)
                               ->with('pdt_content', $pdt_content)
                               ->with('pdt_images', $pdt_images)

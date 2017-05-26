@@ -15,7 +15,7 @@ class CartController extends Controller
     $m3_result->status = 0;
     $m3_result->message = '添加成功';
 
-  /*  // 如果当前已经登录
+    // 如果当前已经登录
     $member = $request->session()->get('member', '');
     if($member != '') {
       $cart_items = CartItem::where('member_id', $member->id)->get();
@@ -39,7 +39,7 @@ class CartController extends Controller
       }
 
       return $m3_result->toJson();
-    }*/
+    }
 
     $bk_cart = $request->cookie('bk_cart');
    //return $bk_cart;

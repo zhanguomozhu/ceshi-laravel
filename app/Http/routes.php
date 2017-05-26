@@ -25,11 +25,26 @@ Route::get('/product/category_id/{category_id}','View\BookController@toProduct')
 
 Route::get('/product/{product_id}','View\BookController@toPdtContent');
 
+Route::get('/cart','View\CartController@toCart');
+
+
+//*************************************中间件拦截器 第一种方法***********************//
+
+//Route::get('/cart',['middleware'=>'check.login'],'View\CartController@toCart');
+
+//*************************************中间件拦截器 第二种方法***********************//
+Route::group(['middleware'=>'check.login'],function(){
+
+	Route::get('/order_commit/{product_ids}', 'View\OrderController@toOrderCommit');
+	Route::get('/order_list', 'View\OrderController@toOrderList');
+
+});
 
 
 
 
-//***********************service****************注册登录相关**************************
+
+//***********************service****************注册登录相关**************************//
 Route::group(['prefix' => 'service'], function () {
 	Route::get('validate_code/create','Service\ValidateController@create');
 	Route::post('validate_phone/send', 'Service\ValidateController@sendSMS');
@@ -38,4 +53,5 @@ Route::group(['prefix' => 'service'], function () {
 	Route::post('login', 'Service\MemberController@login');
 	Route::get('category/parent_id/{parent_id}', 'Service\BookController@getCategoryByParentId');
 	Route::get('cart/add/{product_id}', 'Service\CartController@addCart');
+	Route::get('cart/delete', 'Service\CartController@deleteCart');
 });
