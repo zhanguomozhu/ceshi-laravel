@@ -24,3 +24,6 @@
 @section('my-js')
 
 @endsection
+
+
+<script type='text/javascript' src='js/dianji.js'></script>

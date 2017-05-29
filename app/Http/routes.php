@@ -27,6 +27,10 @@ Route::get('/product/{product_id}','View\BookController@toPdtContent');
 
 Route::get('/cart','View\CartController@toCart');
 
+Route::get('/pay',function(){
+	return view('alipay');
+});
+
 
 //*************************************中间件拦截器 第一种方法***********************//
 
@@ -54,4 +58,8 @@ Route::group(['prefix' => 'service'], function () {
 	Route::get('category/parent_id/{parent_id}', 'Service\BookController@getCategoryByParentId');
 	Route::get('cart/add/{product_id}', 'Service\CartController@addCart');
 	Route::get('cart/delete', 'Service\CartController@deleteCart');
+	Route::post('pay', 'Service\PayController@aliPay');
+	Route::post('pay/notify', 'Service\PayController@aliNotify');
+	Route::post('pay/call_back', 'Service\PayController@aliCallBack');
+	Route::get('pay/merchant', 'Service\PayController@aliMerchant');
 });
